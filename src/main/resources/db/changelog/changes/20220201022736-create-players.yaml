@@ -1,0 +1,77 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1643662660601-1
+      author: md-farhan-memon (generated)
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: players_id_seq
+            startValue: 1
+  - changeSet:
+      id: 1643662660601-2
+      author: md-farhan-memon (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: playersPK
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: age
+                  type: INTEGER
+              - column:
+                  constraints:
+                    nullable: false
+                  name: country
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: first_name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: last_name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: sport
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: type
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: value
+                  type: BIGINT
+            tableName: players
+  - changeSet:
+      id: 1643662660601-3
+      author: md-farhan-memon (generated)
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: sport
+                  type: varchar(255)
+            tableName: teams
+  - changeSet:
+      id: 1643662660601-4
+      author: md-farhan-memon (generated)
+      changes:
+        - dropColumn:
+            columnName: game
+            tableName: teams

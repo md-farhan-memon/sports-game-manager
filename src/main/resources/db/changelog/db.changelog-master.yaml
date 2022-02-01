@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changes/20220201013239-create-users.yaml
+  - include:
+      file: db/changelog/changes/20220201015154-create-teams.yaml
+  - include:
+      file: db/changelog/changes/20220201022736-create-players.yaml
+  - include:
+      file: db/changelog/changes/20220201023613-create-team-players.yaml

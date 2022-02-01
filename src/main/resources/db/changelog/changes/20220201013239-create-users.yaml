@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1643659363210-1
+      author: md-farhan-memon (generated)
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: users_id_seq
+            startValue: 1
+  - changeSet:
+      id: 1643659363210-2
+      author: md-farhan-memon (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: usersPK
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: first_name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: last_name
+                  type: VARCHAR(255)
+            tableName: users
+  - changeSet:
+      id: 1643659363210-3
+      author: md-farhan-memon (generated)
+      changes:
+        - addUniqueConstraint:
+            columnNames: email
+            constraintName: UC_USERSEMAIL_COL
+            tableName: users

@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1643660518994-1
+      author: md-farhan-memon (generated)
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: teams_id_seq
+            startValue: 1
+  - changeSet:
+      id: 1643660518994-2
+      author: md-farhan-memon (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: teamsPK
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: game
+                  type: VARCHAR(255)
+              - column:
+                  name: user_id
+                  type: BIGINT
+            tableName: teams
+  - changeSet:
+      id: 1643660518994-3
+      author: md-farhan-memon (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: teams
+            constraintName: FKlm88j38y90erf2rum00e85gw8
+            deferrable: false
+            initiallyDeferred: false
+            referencedColumnNames: id
+            referencedTableName: users
+            validate: true

@@ -1,0 +1,74 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1643663177623-1
+      author: md-farhan-memon (generated)
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: team_players_id_seq
+            startValue: 1
+  - changeSet:
+      id: 1643663177623-2
+      author: md-farhan-memon (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: team_playersPK
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: age
+                  type: INTEGER
+              - column:
+                  constraints:
+                    nullable: false
+                  name: country
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: first_name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: last_name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: sport
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: type
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: value
+                  type: BIGINT
+              - column:
+                  name: team_id
+                  type: BIGINT
+            tableName: team_players
+  - changeSet:
+      id: 1643663177623-3
+      author: md-farhan-memon (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: team_id
+            baseTableName: team_players
+            constraintName: FK3bhsykltbdhsmmb61l2ml12h
+            deferrable: false
+            initiallyDeferred: false
+            referencedColumnNames: id
+            referencedTableName: teams
+            validate: true
