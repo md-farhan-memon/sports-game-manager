@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1643741469646-1
+      author: md-farhan-memon (generated)
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: password
+                  type: varchar(255)
+            tableName: users
+  - changeSet:
+      id: 1643741469646-2
+      author: md-farhan-memon (generated)
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: role
+                  type: varchar(255)
+            tableName: users

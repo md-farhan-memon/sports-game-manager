@@ -13,6 +13,9 @@ public class Constant {
   // Team Player
   public static final String TEAM_PLAYER_ID_SEQ = "team_players_id_seq";
 
+  // Access Header
+  public static final String ACCESS_TOKEN_HEADER = "accessToken";
+
   // Private Constructor
   private Constant() {
     throw new IllegalStateException("Utility class");

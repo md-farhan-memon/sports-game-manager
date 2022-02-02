@@ -27,7 +27,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.springframework.validation.annotation.Validated;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -35,6 +37,8 @@ import lombok.ToString;
 @Setter
 @Entity
 @Validated
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "users")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @SequenceGenerator(name = Constant.USER_ID_SEQ, sequenceName = Constant.USER_ID_SEQ, allocationSize = 1)
@@ -65,12 +69,19 @@ public class User {
 
   @JsonIgnore
   @ToString.Exclude
+  @NotNull
+  @NotBlank
+  @Column(nullable = false)
   private String password;
 
   @NotNull
   @Column(nullable = false)
   @Enumerated(EnumType.STRING)
   private Role role = Role.User;
+
+  @JsonIgnore
+  @ToString.Exclude
+  private String accessToken;
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
   private Set<Team> teams = new HashSet<>();

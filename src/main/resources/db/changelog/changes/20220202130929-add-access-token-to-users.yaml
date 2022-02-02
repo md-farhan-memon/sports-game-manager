@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1643787574815-5
+      author: justmac (generated)
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: access_token
+                  type: varchar(255)
+            tableName: users
