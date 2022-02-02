@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1643815712961-1
+      author: md-farhan-memon (generated)
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueNumeric: 5000000
+                  name: wallet
+                  type: BIGINT
+            tableName: teams

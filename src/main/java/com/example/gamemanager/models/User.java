@@ -37,8 +37,8 @@ import lombok.ToString;
 @Setter
 @Entity
 @Validated
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "users")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @SequenceGenerator(name = Constant.USER_ID_SEQ, sequenceName = Constant.USER_ID_SEQ, allocationSize = 1)
@@ -83,6 +83,7 @@ public class User {
   @ToString.Exclude
   private String accessToken;
 
+  @JsonIgnore
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
   private Set<Team> teams = new HashSet<>();
 }

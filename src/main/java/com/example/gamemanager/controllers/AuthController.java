@@ -12,6 +12,7 @@ import com.example.gamemanager.models.User;
 import com.example.gamemanager.security.CurrentUser;
 import com.example.gamemanager.security.JwtUtils;
 import com.example.gamemanager.services.db.UserDbService;
+import com.example.gamemanager.services.helper.TeamService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,9 @@ public class AuthController extends BaseController {
   @Autowired
   private UserDbService userDbService;
 
+  @Autowired
+  private TeamService teamService;
+
   @PostMapping("/signup")
   public ResponseEntity<MessageResponse> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
     if (userDbService.existsByEmail(signUpRequest.getEmail())) {
@@ -53,6 +57,8 @@ public class AuthController extends BaseController {
         passwordEncoder.encode(signUpRequest.getPassword()), Role.User, null, new HashSet<>());
 
     userDbService.save(user);
+
+    teamService.generateNewTeam(user.getId());
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }

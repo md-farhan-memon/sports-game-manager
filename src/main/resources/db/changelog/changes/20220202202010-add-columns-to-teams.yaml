@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1643813415173-1
+      author: md-farhan-memon (generated)
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: country
+                  type: varchar(255)
+            tableName: teams
+  - changeSet:
+      id: 1643813415173-2
+      author: md-farhan-memon (generated)
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: varchar(250)
+            tableName: teams
+  - changeSet:
+      id: 1643813415173-3
+      author: md-farhan-memon (generated)
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: value
+                  type: BIGINT
+            tableName: teams

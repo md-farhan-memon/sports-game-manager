@@ -22,13 +22,17 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.springframework.validation.annotation.Validated;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
 @Validated
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "players")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @SequenceGenerator(name = Constant.PLAYER_ID_SEQ, sequenceName = Constant.PLAYER_ID_SEQ, allocationSize = 1)

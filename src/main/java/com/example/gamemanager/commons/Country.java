@@ -17,4 +17,14 @@ public enum Country {
   public String displayName() {
     return displayName;
   }
+
+  public static Country getByDisplayName(String displayName) {
+    for (Country country : Country.values()) {
+      if (displayName.equals(country.displayName())) {
+        return country;
+      }
+    }
+
+    return null;
+  }
 }
