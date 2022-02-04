@@ -1,11 +1,14 @@
 package com.example.gamemanager.services.helper;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.example.gamemanager.commons.PlayerType;
 import com.example.gamemanager.commons.Sport;
+import com.example.gamemanager.dtos.request.PatchTeamRequest;
+import com.example.gamemanager.mappers.TeamMapper;
 import com.example.gamemanager.models.Player;
 import com.example.gamemanager.models.Team;
 import com.example.gamemanager.models.TeamPlayer;
@@ -30,6 +33,9 @@ public class TeamService {
   @Autowired
   private TeamDbService teamDbService;
 
+  @Autowired
+  private TeamMapper teamMapper;
+
   @Async
   public void generateNewTeam(Long userId) {
     User user = userDbService.findbyId(userId);
@@ -41,6 +47,15 @@ public class TeamService {
     team.setCountry(team.findDominantCountry());
     team.setValue(team.calculateTeamValue());
     teamDbService.save(team);
+  }
+
+  public Team patchTeam(PatchTeamRequest patchTeamRequest, Team team) {
+    teamMapper.updateTeamFromDto(patchTeamRequest, team);
+    return teamDbService.save(team);
+  }
+
+  public Optional<Team> getUserTeam(User user, Long teamId) {
+    return teamDbService.findByIdAndUser(teamId, user.getId());
   }
 
   // Private Methods

@@ -1,5 +1,7 @@
 package com.example.gamemanager.services.db;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import com.example.gamemanager.models.Team;
@@ -17,5 +19,10 @@ public class TeamDbService {
   @Transactional
   public Team save(Team team) {
     return teamRepository.save(team);
+  }
+
+  @Transactional
+  public Optional<Team> findByIdAndUser(Long id, Long userId) {
+    return teamRepository.findByIdAndUser_Id(id, userId);
   }
 }
