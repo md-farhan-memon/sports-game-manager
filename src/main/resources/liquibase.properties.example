@@ -1,0 +1,8 @@
+# Liquibase Propeties
+changeLogFile=db/changelog/db.changelog-master.yaml
+url=jdbc:postgresql://$DB_HOST/$DB_NAME
+username=$USERNAME
+password=$PASSWORD
+driver=org.postgresql.Driver
+referenceUrl=hibernate:spring:com.example.gamemanager.models?dialect=org.hibernate.dialect.PostgreSQLDialect&hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+diffChangeLogFile=src/main/resources/db/changelog/to-be-changed.yaml

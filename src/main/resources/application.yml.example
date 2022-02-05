@@ -1,0 +1,44 @@
+# Logging
+logging:
+  level:
+    org:
+      springframework:
+        jdbc:
+          core:
+            JdbcTemplate: INFO
+        web: INFO
+    root: INFO
+
+# Database
+spring:
+  datasource:
+    hikari:
+      maximumPoolSize: 2
+    url: jdbc:postgresql://$DB_HOST/$DB_NAME
+    username: $USERNAME
+    password: $PASSWORD
+  jpa:
+    database: postgresql
+    hibernate:
+      # Hibernate ddl auto (create, create-drop, validate, update)
+      ddl-auto: none
+    properties:
+      hibernate:
+        # Fetch data in batches
+        batch_fetch_style: PADDED
+        default_batch_fetch_size: 50
+        # The SQL dialect makes Hibernate generate better SQL for the chosen database
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc:
+          lob:
+            #Reference: https://stackoverflow.com/a/49261146/6548745
+            non_contextual_creation: true
+    show-sql: true
+  # Liquibase Properties
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+    enabled: true
+
+server:
+  port: 8080

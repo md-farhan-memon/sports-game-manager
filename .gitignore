@@ -35,3 +35,8 @@ build/
 Description.txt
 mvnw
 mvnw.cmd
+
+### Test Files ###
+TestController.java
+application.yml
+liquibase.properties
