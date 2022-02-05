@@ -1,7 +1,5 @@
 package com.example.gamemanager.controllers;
 
-import java.util.HashSet;
-
 import javax.validation.Valid;
 
 import com.example.gamemanager.commons.Role;
@@ -53,8 +51,8 @@ public class AuthController extends BaseController {
       return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
     }
 
-    User user = new User(null, signUpRequest.getFirstName(), signUpRequest.getLastName(), signUpRequest.getEmail(),
-        passwordEncoder.encode(signUpRequest.getPassword()), Role.User, null, new HashSet<>());
+    User user = new User(signUpRequest.getFirstName(), signUpRequest.getLastName(), signUpRequest.getEmail(),
+        passwordEncoder.encode(signUpRequest.getPassword()), Role.User);
 
     userDbService.save(user);
 

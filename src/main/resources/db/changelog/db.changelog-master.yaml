@@ -15,3 +15,7 @@ databaseChangeLog:
       file: db/changelog/changes/20220202202010-add-columns-to-teams.yaml
   - include:
       file: db/changelog/changes/20220202205828-add-wallet-to-teams.yaml
+  - include:
+      file: db/changelog/changes/20220205001426-add-timestamps.yaml
+  - include:
+      file: db/changelog/changes/20220205011747-create-transfer-models.yaml

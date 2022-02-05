@@ -1,5 +1,6 @@
 package com.example.gamemanager.models;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,6 +26,8 @@ import com.example.gamemanager.commons.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.validation.annotation.Validated;
 
 import lombok.AllArgsConstructor;
@@ -83,7 +86,21 @@ public class User {
   @ToString.Exclude
   private String accessToken;
 
+  @CreationTimestamp
+  private LocalDateTime creationAt;
+
+  @UpdateTimestamp
+  private LocalDateTime updatedAt;
+
   @JsonIgnore
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
   private Set<Team> teams = new HashSet<>();
+
+  public User(String firstName, String lastName, String email, String password, Role role) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.password = password;
+    this.role = role;
+  }
 }

@@ -25,4 +25,9 @@ public class TeamDbService {
   public Optional<Team> findByIdAndUser(Long id, Long userId) {
     return teamRepository.findByIdAndUser_Id(id, userId);
   }
+
+  @Transactional
+  public Optional<Team> findById(Long id) {
+    return teamRepository.findById(id);
+  }
 }

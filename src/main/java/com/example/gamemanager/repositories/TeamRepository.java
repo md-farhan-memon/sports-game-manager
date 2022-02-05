@@ -8,4 +8,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface TeamRepository extends PagingAndSortingRepository<Team, Long> {
   Optional<Team> findByIdAndUser_Id(Long id, Long userId);
+
+  Optional<Team> findById(Long id);
 }

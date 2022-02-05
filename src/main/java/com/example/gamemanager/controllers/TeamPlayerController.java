@@ -54,7 +54,7 @@ public class TeamPlayerController extends BaseController {
       return ResponseEntity.ok().body(teamPlayerService.patchTeam(patchTeamPlayerRequest, teamPlayer.get()));
     } else {
       return ResponseEntity.status(HttpStatus.NOT_FOUND)
-          .body(notFoundResponseBody("Team not found.", request));
+          .body(notFoundResponseBody("Player not found.", request));
     }
   }
 }

@@ -1,0 +1,61 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1644000271209-1
+      author: justmac (generated)
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: creation_at
+                  type: timestamp
+            tableName: team_players
+  - changeSet:
+      id: 1644000271209-2
+      author: justmac (generated)
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: creation_at
+                  type: timestamp
+            tableName: teams
+  - changeSet:
+      id: 1644000271209-3
+      author: justmac (generated)
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: creation_at
+                  type: timestamp
+            tableName: users
+  - changeSet:
+      id: 1644000271209-4
+      author: justmac (generated)
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: updated_at
+                  type: timestamp
+            tableName: team_players
+  - changeSet:
+      id: 1644000271209-5
+      author: justmac (generated)
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: updated_at
+                  type: timestamp
+            tableName: teams
+  - changeSet:
+      id: 1644000271209-6
+      author: justmac (generated)
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: updated_at
+                  type: timestamp
+            tableName: users

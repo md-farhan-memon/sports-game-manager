@@ -1,5 +1,6 @@
 package com.example.gamemanager.models;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.HashSet;
@@ -34,6 +35,8 @@ import com.example.gamemanager.commons.Sport;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.validation.annotation.Validated;
 
 import lombok.AllArgsConstructor;
@@ -84,7 +87,13 @@ public class Team {
   @NotNull
   @Min(1)
   @Column(nullable = false, columnDefinition = "BIGINT default 5000000")
-  private Long wallet;
+  private Long wallet = Constant.TEAM_INITIAL_WALLET;
+
+  @CreationTimestamp
+  private LocalDateTime creationAt;
+
+  @UpdateTimestamp
+  private LocalDateTime updatedAt;
 
   @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
   private Set<TeamPlayer> players = new HashSet<>();

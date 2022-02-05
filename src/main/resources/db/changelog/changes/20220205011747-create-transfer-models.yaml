@@ -1,0 +1,176 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1644004072586-1
+      author: md-farhan-memon (generated)
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: transfer_history_id_seq
+            startValue: 1
+  - changeSet:
+      id: 1644004072586-2
+      author: md-farhan-memon (generated)
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: transfer_request_id_seq
+            startValue: 1
+  - changeSet:
+      id: 1644004072586-3
+      author: md-farhan-memon (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: transfer_historiesPK
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: creation_at
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  name: new_team_id
+                  type: BIGINT
+              - column:
+                  name: old_team_id
+                  type: BIGINT
+              - column:
+                  name: team_player_id
+                  type: BIGINT
+              - column:
+                  name: transfer_request_id
+                  type: BIGINT
+            tableName: transfer_histories
+  - changeSet:
+      id: 1644004072586-4
+      author: md-farhan-memon (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: transfer_requestsPK
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: creation_at
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  constraints:
+                    nullable: false
+                  name: price
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: status
+                  type: VARCHAR(255)
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  name: buyer_id
+                  type: BIGINT
+              - column:
+                  name: requester_id
+                  type: BIGINT
+              - column:
+                  name: team_player_id
+                  type: BIGINT
+            tableName: transfer_requests
+  - changeSet:
+      id: 1644004072586-5
+      author: md-farhan-memon (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: requester_id
+            baseTableName: transfer_requests
+            constraintName: FK5pcijbxkhc9ks9wc4fbi4gxfw
+            deferrable: false
+            initiallyDeferred: false
+            referencedColumnNames: id
+            referencedTableName: users
+            validate: true
+  - changeSet:
+      id: 1644004072586-6
+      author: md-farhan-memon (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: transfer_request_id
+            baseTableName: transfer_histories
+            constraintName: FK7v83yjhkhrl4386wosy88kohq
+            deferrable: false
+            initiallyDeferred: false
+            referencedColumnNames: id
+            referencedTableName: transfer_requests
+            validate: true
+  - changeSet:
+      id: 1644004072586-7
+      author: md-farhan-memon (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: new_team_id
+            baseTableName: transfer_histories
+            constraintName: FKboap1j509jdnb29qk6mkfojb7
+            deferrable: false
+            initiallyDeferred: false
+            referencedColumnNames: id
+            referencedTableName: teams
+            validate: true
+  - changeSet:
+      id: 1644004072586-8
+      author: md-farhan-memon (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: team_player_id
+            baseTableName: transfer_histories
+            constraintName: FKcffq3wlcwk2ynxcnv1pl4hd3h
+            deferrable: false
+            initiallyDeferred: false
+            referencedColumnNames: id
+            referencedTableName: team_players
+            validate: true
+  - changeSet:
+      id: 1644004072586-9
+      author: md-farhan-memon (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: team_player_id
+            baseTableName: transfer_requests
+            constraintName: FKcr2b574ui87c7msnaxlhhrchg
+            deferrable: false
+            initiallyDeferred: false
+            referencedColumnNames: id
+            referencedTableName: team_players
+            validate: true
+  - changeSet:
+      id: 1644004072586-10
+      author: md-farhan-memon (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: buyer_id
+            baseTableName: transfer_requests
+            constraintName: FKoecc8n48stns4uftytihisvm0
+            deferrable: false
+            initiallyDeferred: false
+            referencedColumnNames: id
+            referencedTableName: users
+            validate: true
+  - changeSet:
+      id: 1644004072586-11
+      author: md-farhan-memon (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: old_team_id
+            baseTableName: transfer_histories
+            constraintName: FKt79fewqcxtwbwf90wbrjk0xvy
+            deferrable: false
+            initiallyDeferred: false
+            referencedColumnNames: id
+            referencedTableName: teams
+            validate: true

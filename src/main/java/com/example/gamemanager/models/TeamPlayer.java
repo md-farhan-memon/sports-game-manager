@@ -1,5 +1,7 @@
 package com.example.gamemanager.models;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -19,11 +21,13 @@ import javax.validation.constraints.Size;
 
 import com.example.gamemanager.commons.Constant;
 import com.example.gamemanager.commons.Country;
-import com.example.gamemanager.commons.Sport;
 import com.example.gamemanager.commons.PlayerType;
+import com.example.gamemanager.commons.Sport;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.validation.annotation.Validated;
 
 import lombok.AllArgsConstructor;
@@ -88,9 +92,27 @@ public class TeamPlayer {
   @ManyToOne(fetch = FetchType.LAZY)
   private Team team;
 
+  @CreationTimestamp
+  private LocalDateTime creationAt;
+
+  @UpdateTimestamp
+  private LocalDateTime updatedAt;
+
+  @SuppressWarnings("java:S107")
+  public TeamPlayer(String firstName, String lastName, Country country, Integer age, Long value, PlayerType type,
+      Sport sport, Team team) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.country = country;
+    this.age = age;
+    this.value = value;
+    this.type = type;
+    this.sport = sport;
+    this.team = team;
+  }
+
   public static TeamPlayer build(Player player, Team team) {
     return new TeamPlayer(
-        null,
         player.getFirstName(),
         player.getLastName(),
         player.getCountry(),
@@ -98,5 +120,16 @@ public class TeamPlayer {
         player.getValue(),
         player.getType(),
         player.getSport(), team);
+  }
+
+  public Long improvedValueAfterTranser() {
+    int increamentalPercentage = randomNumberBetween(Constant.TEAM_PLAYER_INCREMENTAL_MIN,
+        Constant.TEAM_PLAYER_INCREMENTAL_MAX);
+    return (this.getValue() + (this.getValue() * increamentalPercentage / 100));
+  }
+
+  // Private Methods
+  private int randomNumberBetween(int min, int max) {
+    return Constant.RANDOM.ints(min, max).findFirst().getAsInt();
   }
 }

@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.example.gamemanager.commons.Constant;
 import com.example.gamemanager.commons.PlayerType;
 import com.example.gamemanager.commons.Sport;
 import com.example.gamemanager.dtos.request.PatchTeamRequest;
@@ -46,6 +47,7 @@ public class TeamService {
     team.setPlayers(generateRandomPlayers(team));
     team.setCountry(team.findDominantCountry());
     team.setValue(team.calculateTeamValue());
+    team.setWallet(Constant.TEAM_INITIAL_WALLET);
     teamDbService.save(team);
   }
 

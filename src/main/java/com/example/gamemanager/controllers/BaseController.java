@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.gamemanager.dtos.response.DetailedResponse;
 import com.example.gamemanager.models.User;
 import com.example.gamemanager.security.CurrentUser;
 import com.example.gamemanager.services.db.UserDbService;
@@ -40,21 +41,27 @@ public class BaseController {
     return userDbService.findbyId(currentUser.getId());
   }
 
-  public Map<String, Object> unAthorisedResponseBody(String message, HttpServletRequest request) {
-    final Map<String, Object> body = new HashMap<>();
-    body.put("status", HttpServletResponse.SC_UNAUTHORIZED);
-    body.put("error", "Unauthorized");
-    body.put("message", message);
-    body.put("path", request.getServletPath());
-    return body;
+  public DetailedResponse unAthorisedResponseBody(String message, HttpServletRequest request) {
+    return new DetailedResponse(
+        HttpServletResponse.SC_UNAUTHORIZED,
+        "Unauthorized",
+        message,
+        request.getServletPath());
   }
 
-  public Map<String, Object> notFoundResponseBody(String message, HttpServletRequest request) {
-    final Map<String, Object> body = new HashMap<>();
-    body.put("status", HttpServletResponse.SC_NOT_FOUND);
-    body.put("error", "Not Found");
-    body.put("message", message);
-    body.put("path", request.getServletPath());
-    return body;
+  public DetailedResponse notFoundResponseBody(String message, HttpServletRequest request) {
+    return new DetailedResponse(
+        HttpServletResponse.SC_NOT_FOUND,
+        "Not Found",
+        message,
+        request.getServletPath());
+  }
+
+  public DetailedResponse invalidResponseBody(String message, HttpServletRequest request) {
+    return new DetailedResponse(
+        HttpServletResponse.SC_BAD_REQUEST,
+        "Bad Request",
+        message,
+        request.getServletPath());
   }
 }
