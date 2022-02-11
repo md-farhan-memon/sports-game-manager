@@ -42,7 +42,7 @@ public class TransferRequestService {
   }
 
   public boolean canBuy(TransferRequest transferRequest, Team team) {
-    return (transferRequest.getPrice() <= team.getWallet() && transferRequest.getRequester() != team.getUser());
+    return (transferRequest.getPrice() < team.getWallet() && transferRequest.getRequester() != team.getUser());
   }
 
   public TransferHistory completeTransfer(TransferRequest transferRequest, Team newTeam) {
